@@ -20,14 +20,12 @@ func (h *MyEventHandler) OnRow(e *canal.RowsEvent) error {
 
 func main() {
 	cfg := canal.NewDefaultConfig()
-	cfg.Addr = "127.0.0.1:3307"
+	cfg.Addr = "127.0.0.1:3306"
 	cfg.User = "root"
-	cfg.Dump.TableDB = "test"
-	cfg.Dump.Tables = []string{"t"}
-
+	cfg.Dump.ExecutionPath = ""
 	c, _ := canal.NewCanal(cfg)
 	c.SetEventHandler(&MyEventHandler{})
 	gtid, _ := mysql.ParseGTIDSet(mysql.MySQLFlavor,
-		"94e1b69b-d8df-11ef-85d2-c6bc6abebafa:1")
+		"896e7882-18fe-11ef-ab88-22222d34d411:1")
 	c.StartFromGTID(gtid)
 }

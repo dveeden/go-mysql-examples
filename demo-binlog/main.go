@@ -18,7 +18,7 @@ func main() {
 		Password: "",
 	}
 	syncer := replication.NewBinlogSyncer(cfg)
-	streamer, _ := syncer.StartSync(mysql.Position{"binlog.000003", 219532})
+	streamer, _ := syncer.StartSync(mysql.Position{"binlog.000001", 4})
 	for {
 		ev, _ := streamer.GetEvent(context.Background())
 
